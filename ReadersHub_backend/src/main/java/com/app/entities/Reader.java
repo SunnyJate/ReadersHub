@@ -40,19 +40,9 @@ public class Reader extends BaseEntity{
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate dob;
 	@Column(length = 30,  unique = true)
-	private int mobileNumber;
+	private long mobileNumber;
 	@OneToMany(mappedBy = "reader", cascade = CascadeType.ALL, orphanRemoval = true /* , fetch = FetchType.EAGER */ )
 	private List<ReaderBookLog> logs = new ArrayList<>();
-	
-	public Reader(String firstName, String lastName, String email, String password, LocalDate dob, int mobileNumber) {
-		super();
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.email = email;
-		this.password = password;
-		this.dob = dob;
-		this.mobileNumber = mobileNumber;
-	}
 	
 	@Column(length = 30)
 	private int age=calculateAge(dob);
@@ -71,5 +61,18 @@ public class Reader extends BaseEntity{
 		{  
 			return 0;  
 		}  		 
+	}
+
+	public Reader(String firstName, String lastName, String email, String password, LocalDate dob, long mobileNumber) 
+	{
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.password = password;
+		this.dob = dob;
+		this.mobileNumber = mobileNumber;
+		this.age = calculateAge(dob);
+		System.out.println(age);
 	}  
 }

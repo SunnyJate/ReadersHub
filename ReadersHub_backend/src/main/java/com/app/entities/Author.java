@@ -37,7 +37,7 @@ public class Author extends BaseEntity {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate dob;
 	@Column(length = 30,  unique = true)
-	private int mobileNumber;
+	private long mobileNumber;
 	
 	@Column(length = 30)
 	private int age = calculateAge(dob);
@@ -61,7 +61,7 @@ public class Author extends BaseEntity {
 		}  
 	}
 
-	public Author(String firstName, String lastName, String email, String password, LocalDate dob, int mobileNumber) {
+	public Author(String firstName, String lastName, String email, String password, LocalDate dob, long mobileNumber) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
